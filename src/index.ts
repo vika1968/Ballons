@@ -56,7 +56,6 @@ const startGame =() => {
 startButton.addEventListener("click", startGame);
 
 updateScoreBoard(points.toString());
-//---------------------------------
 
 const generateRandomNumber = (from: number, to: number) => {
   return Math.floor((to - from + 1) * Math.random()) + from;

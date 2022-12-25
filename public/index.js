@@ -1,4 +1,4 @@
-"use stricdivContainert";
+"use strict";
 //-----------Create HTML--------------
 const mainDiv = document.querySelector(".gamefield");
 const btnStart = document.createElement("button");
@@ -47,7 +47,6 @@ const startGame = () => {
 };
 startButton.addEventListener("click", startGame);
 updateScoreBoard(points.toString());
-//---------------------------------
 const generateRandomNumber = (from, to) => {
     return Math.floor((to - from + 1) * Math.random()) + from;
 };
