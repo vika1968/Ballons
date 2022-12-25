@@ -101,7 +101,7 @@ function handleClickonBalloons(e: any) {
       ++points;      
       updateScoreBoard(points.toString())
    }, 50);
-   //---Reload the ballShot (back to the start)---
+   //---Reload the ballShot bg music (back to the start)---
    ballShot.load();
 }
 
