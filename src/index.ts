@@ -23,7 +23,7 @@ const createFiveBalloons = () =>{
 createFiveBalloons();
 
 //-------------Declare variables--------------- 
-let totalBallons: number = 0;
+let totalBalloons: number = 0;
 let gameStarted: boolean;
 let topScore : any; 
 let points: number = 0;
@@ -42,7 +42,7 @@ const bgMusic: HTMLAudioElement= new Audio("../../public/MP3/ce8e6287c767e45.mp3
 
 topScore = loadTopScore();
 
-Array.from(bubbles).forEach(bubble => bubble.addEventListener("click", handleClickonBallons));
+Array.from(bubbles).forEach(bubble => bubble.addEventListener("click", handleClickonBalloons));
 
 //-------- Start the game--------------------
 const startGame =() => {
@@ -62,8 +62,8 @@ const generateRandomNumber = (from: number, to: number) => {
   return Math.floor((to - from + 1) * Math.random()) + from;
 };
 
-const showRandomBalloon = (arrBallons: any ) => {  
-  const balloonNumber = arrBallons[generateRandomNumber(0, arrBallons.length - 1)];
+const showRandomBalloon = (arrBalloons: any ) => {  
+  const balloonNumber = arrBalloons[generateRandomNumber(0, arrBalloons.length - 1)];
   return balloonNumber;
 }
 
@@ -92,7 +92,7 @@ function updateScoreBoard(points: string) {
   bestScore.dataset.points = topScore;
 }
 
-function handleClickonBallons(e: any) {
+function handleClickonBalloons(e: any) {
   const bubbleContainer = e.target.parentElement;
   bubbleContainer.classList.add("boom");
   bubbleContainer.classList.add("up");
@@ -106,7 +106,7 @@ function handleClickonBallons(e: any) {
    ballShot.load();
 }
 
-function nextBallonUp() {
+function nextBalloonUp() {
   const bubbleContainer = showRandomBalloon(bubbleContainers);
   raiseUpBalloon(bubbleContainer);
   bubbleContainer.timeout = setTimeout(() => {
@@ -114,23 +114,23 @@ function nextBallonUp() {
   },
     generateRandomNumber(800, 2500)
   );
-  ++ totalBallons;
-  gameBoard.textContent = "Balloon number: " + totalBallons.toString();
+  ++ totalBalloons;
+  gameBoard.textContent = "Balloon number: " + totalBalloons.toString();
 }
 
 function mainGameHandler() {
   setTimeout(() => {           
-            if (gameStarted && totalBallons <= 19) {             
-              if (totalBallons - points == 3) {
+            if (gameStarted && totalBalloons <= 19) {             
+              if (totalBalloons - points == 3) {
                   alert("You have missed 3 balloons. The game is over.");                 
                   gameOver(false)
-                  totalBallons = 0;
-                  gameBoard.textContent = "Balloon number: " + totalBallons.toString();
+                  totalBalloons = 0;
+                  gameBoard.textContent = "Balloon number: " + totalBalloons.toString();
                   //---Reload the ballShot (back to the start)---
                   bgMusic.load();
                   return;
               }            
-              nextBallonUp();
+              nextBalloonUp();
               mainGameHandler();
           }
      else {    

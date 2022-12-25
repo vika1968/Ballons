@@ -1,4 +1,4 @@
-"use strict";
+"use stricdivContainert";
 //-----------Create HTML--------------
 const mainDiv = document.querySelector(".gamefield");
 const btnStart = document.createElement("button");
@@ -20,7 +20,7 @@ const createFiveBalloons = () => {
 };
 createFiveBalloons();
 //-------------Declare variables--------------- 
-let totalBallons = 0;
+let totalBalloons = 0;
 let gameStarted;
 let topScore;
 let points = 0;
@@ -35,7 +35,7 @@ const gameBoard = document.querySelector(".gameboard");
 const ballShot = new Audio("../../public/MP3/popballoon1.mp3");
 const bgMusic = new Audio("../../public/MP3/ce8e6287c767e45.mp3");
 topScore = loadTopScore();
-Array.from(bubbles).forEach(bubble => bubble.addEventListener("click", handleClickonBallons));
+Array.from(bubbles).forEach(bubble => bubble.addEventListener("click", handleClickonBalloons));
 //-------- Start the game--------------------
 const startGame = () => {
     bgMusic.play();
@@ -51,8 +51,8 @@ updateScoreBoard(points.toString());
 const generateRandomNumber = (from, to) => {
     return Math.floor((to - from + 1) * Math.random()) + from;
 };
-const showRandomBalloon = (arrBallons) => {
-    const balloonNumber = arrBallons[generateRandomNumber(0, arrBallons.length - 1)];
+const showRandomBalloon = (arrBalloons) => {
+    const balloonNumber = arrBalloons[generateRandomNumber(0, arrBalloons.length - 1)];
     return balloonNumber;
 };
 function loadTopScore() {
@@ -77,7 +77,7 @@ function updateScoreBoard(points) {
     scoreBoard.textContent = "Points: " + points;
     bestScore.dataset.points = topScore;
 }
-function handleClickonBallons(e) {
+function handleClickonBalloons(e) {
     const bubbleContainer = e.target.parentElement;
     bubbleContainer.classList.add("boom");
     bubbleContainer.classList.add("up");
@@ -90,28 +90,28 @@ function handleClickonBallons(e) {
     //---Reload the ballShot (back to the start)---
     ballShot.load();
 }
-function nextBallonUp() {
+function nextBalloonUp() {
     const bubbleContainer = showRandomBalloon(bubbleContainers);
     raiseUpBalloon(bubbleContainer);
     bubbleContainer.timeout = setTimeout(() => {
         hideBalloon(bubbleContainer);
     }, generateRandomNumber(800, 2500));
-    ++totalBallons;
-    gameBoard.textContent = "Balloon number: " + totalBallons.toString();
+    ++totalBalloons;
+    gameBoard.textContent = "Balloon number: " + totalBalloons.toString();
 }
 function mainGameHandler() {
     setTimeout(() => {
-        if (gameStarted && totalBallons <= 19) {
-            if (totalBallons - points == 3) {
+        if (gameStarted && totalBalloons <= 19) {
+            if (totalBalloons - points == 3) {
                 alert("You have missed 3 balloons. The game is over.");
                 gameOver(false);
-                totalBallons = 0;
-                gameBoard.textContent = "Balloon number: " + totalBallons.toString();
+                totalBalloons = 0;
+                gameBoard.textContent = "Balloon number: " + totalBalloons.toString();
                 //---Reload the ballShot (back to the start)---
                 bgMusic.load();
                 return;
             }
-            nextBallonUp();
+            nextBalloonUp();
             mainGameHandler();
         }
         else {
