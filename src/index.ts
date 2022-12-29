@@ -128,7 +128,7 @@ function manageGame() {
     if (totalBalloons - points == 3) {
       setTimeout(() => {
         alert(`You have missed 3 balloons. The game is over.`)
-        finishGame(true);
+        finishGame(false);
         playMusic(backgroundMusic, `load`);
       }
         , 1000);
