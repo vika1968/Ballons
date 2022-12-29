@@ -37,8 +37,6 @@ Array.from(bubbles).forEach(bubble => bubble.addEventListener(`click`, handleCli
 //-------- Start the game--------------------
 const startGame = () => {
     playMusic(backgroundMusic, `play`);
-    //  console.log(backgroundMusic)
-    //    backgroundMusic.play()
     points = 0;
     updateScoreBoard(points.toString());
     startButton.style.display = `none`;
@@ -73,7 +71,7 @@ const hideBalloon = (bubbleContainer) => {
     bubbleContainer.classList.remove(`up`);
 };
 function updateScoreBoard(points) {
-    scoreBoard.textContent = `Points: ` + points;
+    scoreBoard.textContent = `Points: ${points}`;
     bestScore.dataset.points = topScore;
 }
 function handleClickOnBalloons(e) {
@@ -93,7 +91,7 @@ function raiseNextBalloonUp() {
     raiseUpBalloon(bubbleContainer);
     bubbleContainer.timeout = setTimeout(() => {
         hideBalloon(bubbleContainer);
-    }, generateRandomNumber(4000, 5000) //(4000, 5000)//(800, 2500)
+    }, generateRandomNumber(4000, 5000) //(800, 2500)
     );
 }
 function ballonCounting() {
@@ -101,7 +99,7 @@ function ballonCounting() {
         manageGame();
         totalBalloons++;
         gameBoard.textContent = `Balloon number: ${totalBalloons.toString()}`;
-    }, generateRandomNumber(2500, 3500) //(1000, 1000)//(500, 2500)
+    }, generateRandomNumber(2500, 3500) //(500, 2500)
     );
 }
 function manageGame() {
@@ -109,7 +107,7 @@ function manageGame() {
         if (totalBalloons - points == 3) {
             setTimeout(() => {
                 alert(`You have missed 3 balloons. The game is over.`);
-                finishGame(false, false);
+                finishGame(true);
                 playMusic(backgroundMusic, `load`);
             }, 1000);
             return;
@@ -120,11 +118,11 @@ function manageGame() {
         }
     }
     else {
-        finishGame(true, true);
+        finishGame(true);
         playMusic(backgroundMusic, `load`);
     }
 }
-const finishGame = (saveTopScoreYN, gameWon) => {
+const finishGame = (saveTopScoreYN) => {
     startButton.style.display = `initial`;
     topScore = Math.max(points, topScore);
     Array.from(bubbleContainers).forEach((bubble) => {
@@ -133,11 +131,9 @@ const finishGame = (saveTopScoreYN, gameWon) => {
     if (!saveTopScoreYN) {
         saveTopScore(topScore);
     }
-    // if (!gameWon) {
     updateScoreBoard(points.toString());
-    //  }
-    totalBalloons == 0;
-    gameBoard.textContent = `Balloon number: 0`;
+    totalBalloons = 0;
+    gameBoard.textContent = `Balloon number: ${totalBalloons}`;
 };
 function playMusic(audioElelemnt, action) {
     if (action == `play`) {

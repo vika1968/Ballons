@@ -1,6 +1,7 @@
 //-----------Create HTML--------------
 const mainDiv = document.querySelector(`.gamefield`) as HTMLDivElement;
 const btnStart = document.createElement(`button`);
+
 btnStart.className = `startButton`;
 btnStart.innerHTML = `Start game`;
 mainDiv.appendChild(btnStart);
@@ -8,11 +9,11 @@ mainDiv.appendChild(btnStart);
 const createFiveBalloons = () => {
   let i: number = 0;
 
-  while (i <= 4) {
+  while (i <= 4) { 
     let divContainer = document.createElement(`div`);
     divContainer.className = `bubble_Container`;
     let divBubble = document.createElement(`div`);
-    divBubble.className = `bubble`;
+    divBubble.className = `bubble`;     
     divContainer.appendChild(divBubble);
     mainDiv.appendChild(divContainer);
     i++;
@@ -44,8 +45,6 @@ Array.from(bubbles).forEach(bubble => bubble.addEventListener(`click`, handleCli
 //-------- Start the game--------------------
 const startGame = () => {
   playMusic(backgroundMusic, `play`)
-//  console.log(backgroundMusic)
-//    backgroundMusic.play()
   points = 0;
   updateScoreBoard(points.toString());
   startButton.style.display = `none`;
@@ -86,7 +85,7 @@ const hideBalloon = (bubbleContainer: HTMLDivElement) => {
 }
 
 function updateScoreBoard(points: string) {
-  scoreBoard.textContent = `Points: ` + points;
+  scoreBoard.textContent = `Points: ${points}`;
   bestScore.dataset.points = topScore;
 }
 
@@ -94,14 +93,15 @@ function handleClickOnBalloons(e: any) {
   const bubbleContainer = e.target.parentElement;
   bubbleContainer.classList.add(`boom`);
   bubbleContainer.classList.add(`up`);
+
   setTimeout(() => {
-    hideBalloon(bubbleContainer);   
+    hideBalloon(bubbleContainer);
     playMusic(ballShot, `play`)
     points++;
 
     updateScoreBoard(points.toString())
-  }, 50); 
-   playMusic(ballShot, `load`)
+  }, 50);
+  playMusic(ballShot, `load`)
 }
 
 function raiseNextBalloonUp() {
@@ -110,16 +110,16 @@ function raiseNextBalloonUp() {
   bubbleContainer.timeout = setTimeout(() => {
     hideBalloon(bubbleContainer);
   },
-    generateRandomNumber(4000, 5000)//(4000, 5000)//(800, 2500)
+    generateRandomNumber(4000, 5000) //(800, 2500)
   );
 }
 
 function ballonCounting() {
-  setTimeout(() => {    
+  setTimeout(() => {
     manageGame()
-    totalBalloons++   
+    totalBalloons++
     gameBoard.textContent = `Balloon number: ${totalBalloons.toString()}`;
-  }, generateRandomNumber(2500, 3500)//(1000, 1000)//(500, 2500)
+  }, generateRandomNumber(2500, 3500) //(500, 2500)
   );
 }
 
@@ -128,7 +128,7 @@ function manageGame() {
     if (totalBalloons - points == 3) {
       setTimeout(() => {
         alert(`You have missed 3 balloons. The game is over.`)
-        finishGame(false, false);      
+        finishGame(true);
         playMusic(backgroundMusic, `load`);
       }
         , 1000);
@@ -140,12 +140,12 @@ function manageGame() {
     }
   }
   else {
-    finishGame(true, true)
+    finishGame(true)
     playMusic(backgroundMusic, `load`)
   }
 }
 
-const finishGame = (saveTopScoreYN: boolean, gameWon: boolean) => {
+const finishGame = (saveTopScoreYN: boolean) => {
   startButton.style.display = `initial`;
   topScore = Math.max(points, topScore);
   Array.from(bubbleContainers).forEach((bubble) => {
@@ -157,19 +157,17 @@ const finishGame = (saveTopScoreYN: boolean, gameWon: boolean) => {
     saveTopScore(topScore);
   }
 
-  // if (!gameWon) {
-    updateScoreBoard(points.toString());
-  //  }
-   
-   totalBalloons == 0;
-   gameBoard.textContent = `Balloon number: 0`;
- }
+  updateScoreBoard(points.toString());
 
-function playMusic(audioElelemnt: HTMLAudioElement, action: string){
-  if (action == `play`) {   
+  totalBalloons = 0;
+  gameBoard.textContent = `Balloon number: ${totalBalloons}`;
+}
+
+function playMusic(audioElelemnt: HTMLAudioElement, action: string) {
+  if (action == `play`) {
     audioElelemnt.play();
   }
-  if (action ==`load`) {
+  if (action == `load`) {
     //---Reload the Music (back to the start)---
     audioElelemnt.load();
   }

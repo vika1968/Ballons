@@ -81,24 +81,20 @@ html {
         }
       
         .bubble {
-          margin-left: auto;
-          margin-right: auto;
-          width: 100px;
-          height: 200px;  
-          background: url(../../public/images/balloon1.webp) no-repeat center center;
-          background-size: 100% auto;
-          // transition: top 0.5s;   
-             
-          position: relative;
-          // top: 100%;
-           bottom: -100%
+         margin-left: auto;
+         margin-right: auto;
+         width: 100px;
+         height: 200px;  
+         background: url(../../public/images/balloon1.webp) no-repeat center center;
+         background-size: 100% auto;          
+         position: relative;         
+         bottom: -100%
         }
 
         .up > .bubble {
           animation-name: UpBallon;
-          animation-duration: 7s;     
-          // top: -200px;          
-       }
+          animation-duration: 7s;    
+        }
        
        .boom > .bubble {
          background-image: url(../../public/images/boom.png); 
