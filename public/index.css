@@ -7,13 +7,14 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
-  max-width: 60%;
-  height: 80%;
+  height: 100%;
+  max-width: 95%;
   background-color: rgb(186, 180, 203);
 }
 body header {
-  margin-top: 50px;
   padding: 20px;
   font-size: 14px;
   display: flex;
@@ -21,7 +22,10 @@ body header {
   align-items: center;
   font-size: 20px;
 }
-body header .phase, body header div #currentScoreView, body header div, body header div #topScoreView {
+body header .phase,
+body header div #currentScoreView,
+body header div,
+body header div #topScoreView {
   background-color: rgb(148, 126, 210);
   padding: 10px 20px;
   color: white;
@@ -46,7 +50,7 @@ body .gamefield {
   max-height: calc(100% - 100px);
   padding: 0 20%;
   box-sizing: border-box;
-  background-image: url(../../public/images/sky9.jpg);
+  background-image: url(../../public/images/1356132.jpg);
   background-size: 100% 100%;
 }
 body .gamefield .startButton {
